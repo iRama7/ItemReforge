@@ -1,0 +1,6 @@
+name: ItemReforge
+version: '${project.version}'
+main: ir.itemreforge.ItemReforge
+api-version: 1.17
+authors: [ ImRama ]
+description: Reforge your items with random enchantments
