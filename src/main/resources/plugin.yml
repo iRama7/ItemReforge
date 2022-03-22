@@ -4,3 +4,7 @@ main: ir.itemreforge.ItemReforge
 api-version: 1.17
 authors: [ ImRama ]
 description: Reforge your items with random enchantments
+depend:
+  - Vault
+commands:
+  reforge:

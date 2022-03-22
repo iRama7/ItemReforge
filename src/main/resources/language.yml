@@ -1,0 +1,27 @@
+messages:
+  no-money: "&cYou don't have enough money!"
+  reforged: "&aYou have successfully reforged your item!"
+  reforge-lore: "&8This item has been reforged"
+  already_reforged: "&cThis item is already reforged!"
+  too-soft: "&cThis item is too soft to reforge!"
+  menu-title: "&8Reforge menu"
+  anvil_item:
+    display-name: "&eReforge item"
+    lore:
+      - "&7Place an item above to reforge"
+      - "&7it! Reforging items adds a"
+      - "&7random modifier to the item that"
+      - "&7grants stat boosts."
+    lore2:
+      - "&7Reforges the above item, giving"
+      - "&7it a random item modifier that"
+      - "&7boosts its stats."
+      - "&7"
+      - "&7Cost"
+      - "&6%cost% &6Coins"
+      - "&7"
+      - "&7Click to reforge!"
+  close_item:
+    display-name: "&cClose"
+    lore:
+      - "&7Close menu"

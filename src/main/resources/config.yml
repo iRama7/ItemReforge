@@ -1,0 +1,108 @@
+Reforge:
+  cost: 1500
+  enchantments:
+    sword:
+      min_new_enchantments: 3
+      max_new_enchantments: 5
+      chances:
+        1:
+          ench: bane_of_arthropods:1
+          chance: 20
+        2:
+          ench: vanishing_curse:1
+          chance: 20
+        3:
+          ench: fire_aspect:1
+          chance: 20
+        4:
+          ench: knockback:1
+          chance: 20
+        5:
+          ench: looting:1
+          chance: 20
+        6:
+          ench: mending:1
+          chance: 20
+        7:
+          ench: sharpness:1
+          chance: 20
+        8:
+          ench: smite:1
+          chance: 20
+        9:
+          ench: sweeping:1
+          chance: 20
+        10:
+          ench: unbreaking:1
+          chance: 20
+    armor:
+      min_new_enchantments: 3
+      max_new_enchantments: 4
+      chances:
+        1:
+          ench: fire_protection:1
+          chance: 20
+        2:
+          ench: projectile_protection:1
+          chance: 20
+        3:
+          ench: blast_protection:1
+          chance: 20
+        4:
+          ench: protection:1
+          chance: 20
+        5:
+          ench: unbreaking:1
+          chance: 20
+        6:
+          ench: thorns:1
+          chance: 20
+        7:
+          ench: mending:1
+          chance: 20
+        8:
+          ench: binding_curse:1
+          chance: 20
+        9:
+          ench: vanishing_curse:1
+          chance: 20
+        10:
+          ench: respiration:1
+          chance: 20
+        11:
+          ench: aqua_affinity:1
+          chance: 20
+        12:
+          ench: feather_falling:1
+          chance: 20
+        13:
+          ench: depth_strider:1
+          chance: 20
+        14:
+          ench: soul_speed:1
+          chance: 20
+        15:
+          ench: frost_walker:1
+          chance: 20
+    tool:
+      min_new_enchantments: 2
+      max_new_enchantments: 4
+      chances:
+        1:
+          ench: efficiency:1
+          chance: 20
+        2:
+          ench: fortune:1
+          chance: 20
+        3:
+          ench: silk_touch:1
+          chance: 20
+        4:
+          ench: unbreaking:1
+          chance: 20
+        5:
+          ench: mending:1
+          chance: 20
+        6:
+          ench: vanishing_curse:1
+          chance: 20
