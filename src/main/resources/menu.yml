@@ -1,0 +1,35 @@
+Menu:
+  Items:
+    close-item:
+      material: BARRIER
+    reforge-item:
+      empty: ANVIL
+      inProgress: ANVIL
+      complete: ANVIL
+
+  Background:
+    complete:
+      material: LIME_STAINED_GLASS_PANE
+      amount: 1
+      name: "&7"
+      lore:
+        - ""
+    inProgress:
+      material: YELLOW_STAINED_GLASS_PANE
+      amount: 1
+      name: "&7"
+      lore:
+        - "&7"
+    empty:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: "&7"
+      lore:
+        - "&7"
+    background:
+      material: BLACK_STAINED_GLASS_PANE
+      amount: 1
+      name: "&7"
+      lore:
+        - "&7"
+

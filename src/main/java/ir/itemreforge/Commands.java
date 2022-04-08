@@ -23,7 +23,8 @@ public class Commands implements TabExecutor {
         }else if(args[0].equalsIgnoreCase("reload") && sender.hasPermission("reforge.admin")){
             plugin.reloadConfig();
             reloadLanguage();
-            sendPluginMessage("&eYou have successfully reloaded the config and language file", (Player) sender, false,false,false);
+            reloadMenuConfig();
+            sendPluginMessage("&eYou have successfully reloaded the plugin files.", (Player) sender, false,false,false);
         }else if(args[0].equalsIgnoreCase("menu") && sender.hasPermission("reforge.use")){
             createPlayerInv((Player) sender);
         }

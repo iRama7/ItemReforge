@@ -46,44 +46,75 @@ public class Menu implements Listener {
         List<String> barrier_lore = getLanguage().getStringList("messages.close_item.lore");
 
         //BACKGROUND
-        inv.get(player).setItem(0,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(9,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(18,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(27,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(36,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(8,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(17,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(26,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(35,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
-        inv.get(player).setItem(44,createGuiItem(Material.RED_STAINED_GLASS_PANE, "&7", null));
+        Material BackgroundMaterial = Material.getMaterial(getMenuConfig().getString("Menu.Background.background.material"));
+        int BackgroundAmount = getMenuConfig().getInt("Menu.Background.background.amount");
+        ItemStack BackgroundItem = new ItemStack(BackgroundMaterial, BackgroundAmount);
+
+        String BackgroundName = getMenuConfig().getString("Menu.Background.background.name");
+        List<String> BackgroundLore = getMenuConfig().getStringList("Menu.Background.background.lore");
+        ItemMeta BackgroundItemMeta = BackgroundItem.getItemMeta();
+        BackgroundItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', BackgroundName));
+        for(int i = 0; i < BackgroundLore.size(); i++){
+            BackgroundLore.set(i, ChatColor.translateAlternateColorCodes('&', BackgroundLore.get(i)));
+        }
+        BackgroundItemMeta.setLore(BackgroundLore);
+        BackgroundItem.setItemMeta(BackgroundItemMeta);
+        //EMPTY
+        Material EmptyMaterial = Material.getMaterial(getMenuConfig().getString("Menu.Background.empty.material"));
+        int EmptyAmount = getMenuConfig().getInt("Menu.Background.empty.amount");
+        ItemStack EmptyItem = new ItemStack(EmptyMaterial, EmptyAmount);
+
+        String EmptyName = getMenuConfig().getString("Menu.Background.empty.name");
+        List<String> EmptyLore = getMenuConfig().getStringList("Menu.Background.empty.lore");
+        ItemMeta EmptyItemMeta = EmptyItem.getItemMeta();
+        EmptyItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', EmptyName));
+        for(int i = 0; i < EmptyLore.size(); i++){
+            EmptyLore.set(i, ChatColor.translateAlternateColorCodes('&', EmptyLore.get(i)));
+        }
+        EmptyItemMeta.setLore(EmptyLore);
+        EmptyItem.setItemMeta(EmptyItemMeta);
+        //EMPTY
+
+        inv.get(player).setItem(0,EmptyItem);
+        inv.get(player).setItem(9,EmptyItem);
+        inv.get(player).setItem(18,EmptyItem);
+        inv.get(player).setItem(27,EmptyItem);
+        inv.get(player).setItem(36,EmptyItem);
+        inv.get(player).setItem(8,EmptyItem);
+        inv.get(player).setItem(17,EmptyItem);
+        inv.get(player).setItem(26,EmptyItem);
+        inv.get(player).setItem(35,EmptyItem);
+        inv.get(player).setItem(44,EmptyItem);
         for(int i = 1; i < 8; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 10; i < 13; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 14; i < 17; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 19; i < 22; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 23; i < 26; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 28; i < 35; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 37; i < 40; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         for(int i = 41; i < 44; i++){
-            inv.get(player).setItem(i,createGuiItem(Material.BLACK_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(i,BackgroundItem);
         }
         //BACKGROUND
         //ITEMS
-        inv.get(player).setItem(22,createGuiItem(Material.ANVIL, anvil_name, anvil_lore));
-        inv.get(player).setItem(40,createGuiItem(Material.BARRIER, barrier_name, barrier_lore));
+        Material emptyReforgeMat = Material.getMaterial(getMenuConfig().getString("Menu.Items.reforge-item.empty"));
+        Material closeButtonMat = Material.getMaterial(getMenuConfig().getString("Menu.Items.close-item.material"));
+        inv.get(player).setItem(22,createGuiItem(emptyReforgeMat, anvil_name, anvil_lore));
+        inv.get(player).setItem(40,createGuiItem(closeButtonMat, barrier_name, barrier_lore));
         //ITEMS
 
 
@@ -208,35 +239,76 @@ public class Menu implements Listener {
 
     public void updateMenu(Boolean toInProgress, Boolean toDone, Player player){
         if(toInProgress){
+
+            //INPROGRESS
+            Material inProgressMaterial = Material.getMaterial(getMenuConfig().getString("Menu.Background.inProgress.material"));
+            int inProgressAmount = getMenuConfig().getInt("Menu.Background.inProgress.amount");
+            ItemStack inProgressItem = new ItemStack(inProgressMaterial, inProgressAmount);
+
+            String inProgressName = getMenuConfig().getString("Menu.Background.inProgress.name");
+            List<String> inProgressLore = getMenuConfig().getStringList("Menu.Background.inProgress.lore");
+            ItemMeta inProgressItemMeta = inProgressItem.getItemMeta();
+            inProgressItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', inProgressName));
+            for(int i = 0; i < inProgressLore.size(); i++){
+                inProgressLore.set(i, ChatColor.translateAlternateColorCodes('&', inProgressLore.get(i)));
+            }
+            inProgressItemMeta.setLore(inProgressLore);
+            inProgressItem.setItemMeta(inProgressItemMeta);
+            //INPROGRESS
             String anvil_name = getLanguage().getString("messages.anvil_item.display-name");
             List<String> anvil_lore = getLanguage().getStringList("messages.anvil_item.lore2");
             int cost = plugin.getConfig().getInt("Reforge.cost");
-            inv.get(player).setItem(0,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(9,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(18,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(27,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(36,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(8,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(17,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(26,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(35,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(44,createGuiItem(Material.YELLOW_STAINED_GLASS_PANE, "&7", null));
+            inv.get(player).setItem(0,inProgressItem);
+            inv.get(player).setItem(9,inProgressItem);
+            inv.get(player).setItem(18,inProgressItem);
+            inv.get(player).setItem(27,inProgressItem);
+            inv.get(player).setItem(36,inProgressItem);
+            inv.get(player).setItem(8,inProgressItem);
+            inv.get(player).setItem(17,inProgressItem);
+            inv.get(player).setItem(26,inProgressItem);
+            inv.get(player).setItem(35,inProgressItem);
+            inv.get(player).setItem(44,inProgressItem);
             for (int i = 0; i < anvil_lore.size(); i++) {
                 anvil_lore.set(i,anvil_lore.get(i).replaceAll("%cost%", String.valueOf(cost)));
             }
-            inv.get(player).setItem(22,createGuiItem(Material.ANVIL, anvil_name, anvil_lore));
+            Material reforgeInProgressMat = Material.getMaterial(getMenuConfig().getString("Menu.Items.reforge-item.inProgress"));
+            inv.get(player).setItem(22,createGuiItem(reforgeInProgressMat, anvil_name, anvil_lore));
             menuStatus.put(player, "inProgress");
         }else if(toDone){
-            inv.get(player).setItem(0,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(9,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(18,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(27,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(36,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(8,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(17,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(26,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(35,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
-            inv.get(player).setItem(44,createGuiItem(Material.LIME_STAINED_GLASS_PANE, "&7", null));
+            //DONE
+            Material completeMaterial = Material.getMaterial(getMenuConfig().getString("Menu.Background.complete.material"));
+            int completeAmount = getMenuConfig().getInt("Menu.Background.complete.amount");
+            ItemStack completeItem = new ItemStack(completeMaterial, completeAmount);
+
+            String completeName = getMenuConfig().getString("Menu.Background.complete.name");
+            List<String> completeLore = getMenuConfig().getStringList("Menu.Background.complete.lore");
+            ItemMeta completeItemMeta = completeItem.getItemMeta();
+            completeItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', completeName));
+            for(int i = 0; i < completeLore.size(); i++){
+                completeLore.set(i, ChatColor.translateAlternateColorCodes('&', completeLore.get(i)));
+            }
+            completeItemMeta.setLore(completeLore);
+            completeItem.setItemMeta(completeItemMeta);
+            //DONE
+
+            inv.get(player).setItem(0,completeItem);
+            inv.get(player).setItem(9,completeItem);
+            inv.get(player).setItem(18,completeItem);
+            inv.get(player).setItem(27,completeItem);
+            inv.get(player).setItem(36,completeItem);
+            inv.get(player).setItem(8,completeItem);
+            inv.get(player).setItem(17,completeItem);
+            inv.get(player).setItem(26,completeItem);
+            inv.get(player).setItem(35,completeItem);
+            inv.get(player).setItem(44,completeItem);
+            String anvil_name = getLanguage().getString("messages.anvil_item.display-name");
+            List<String> anvil_lore = getLanguage().getStringList("messages.anvil_item.lore");
+            int cost = plugin.getConfig().getInt("Reforge.cost");
+            for (int i = 0; i < anvil_lore.size(); i++) {
+                anvil_lore.set(i,anvil_lore.get(i).replaceAll("%cost%", String.valueOf(cost)));
+            }
+            Material reforgeCompleteMat = Material.getMaterial(getMenuConfig().getString("Menu.Items.reforge-item.complete"));
+            inv.get(player).setItem(22,createGuiItem(reforgeCompleteMat, anvil_name, anvil_lore));
             menuStatus.put(player, "Complete");
         }
     }

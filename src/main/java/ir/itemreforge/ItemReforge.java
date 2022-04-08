@@ -21,14 +21,26 @@ public final class ItemReforge extends JavaPlugin {
 
     private static File languageFile;
     private static FileConfiguration language;
+    private static File menuFile;
+    private static FileConfiguration menuConfig;
     private static Economy econ = null;
 
     @Override
     public void onEnable() {
-        sendPluginMessage("&eEnabling ItemReforge &8- By ImRama", null, true, false, false);
         plugin = this;
+        new UpdateChecker(this, 100879).getVersion(version -> {
+            if (this.getDescription().getVersion().equals(version)) {
+                sendPluginMessage("&eYou are using the latest version.", null, true, false, false);
+            } else {
+                sendPluginMessage("&eThere is a new update available!", null, true, false, false);
+                sendPluginMessage("&eYour current version: "+"&c"+plugin.getDescription().getVersion(), null, true, false, false);
+                sendPluginMessage("&eLatest version: "+"&a"+version, null, true, false, false);
+            }
+        });
+        sendPluginMessage("&eEnabling ItemReforge &8- By ImRama", null, true, false, false);
         this.saveDefaultConfig();
         createLanguageConfig();
+        createMenuConfig();
         registerCommands();
         registerEvents();
         if (!setupEconomy() ) {
@@ -69,6 +81,25 @@ public final class ItemReforge extends JavaPlugin {
         language = new YamlConfiguration();
         try{
             language.load(languageFile);
+        }catch(IOException| InvalidConfigurationException e){
+            e.printStackTrace();
+        }
+    }
+    public static void reloadMenuConfig(){
+        menuConfig = YamlConfiguration.loadConfiguration(menuFile);
+    }
+    public static FileConfiguration getMenuConfig(){
+        return menuConfig;
+    }
+    public void createMenuConfig(){
+        menuFile = new File(getDataFolder(), "menu.yml");
+        if(!menuFile.exists()){
+            menuFile.getParentFile().mkdirs();
+            saveResource("menu.yml", false);
+        }
+        menuConfig = new YamlConfiguration();
+        try{
+            menuConfig.load(menuFile);
         }catch(IOException| InvalidConfigurationException e){
             e.printStackTrace();
         }

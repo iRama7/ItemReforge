@@ -42,7 +42,7 @@ public class ReforgeItem {
                         if (enchantment.canEnchantItem(reforgedItem.get(player))) {
                             for (Enchantment ItemEnchantment : reforgedItem.get(player).getEnchantments().keySet()) {
                                 if (enchantment.conflictsWith(ItemEnchantment)) {
-                                    if (enchantment.getKey().equals(ItemEnchantment.getKey())) {
+                                    if (enchantment.getName().equals(ItemEnchantment.getName())) {
                                         level = level + reforgedItem.get(player).getEnchantments().get(ItemEnchantment);
                                     } else {
                                         enchantmentConflicts = true;
