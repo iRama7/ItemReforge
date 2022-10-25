@@ -44,7 +44,7 @@ public final class ItemReforge extends JavaPlugin {
         registerCommands();
         registerEvents();
         if (!setupEconomy() ) {
-            sendPluginMessage("Disabling due to Vault dependency not found!", null, true, false, false);
+            sendPluginMessage("Disabling due to Vault dependency not found or you don't have any Economy provider!", null, true, false, false);
             getServer().getPluginManager().disablePlugin(this);
         }
     }
@@ -118,6 +118,7 @@ public final class ItemReforge extends JavaPlugin {
     public void registerEvents(){
         sendPluginMessage("&eRegistering events...", null, true, false, false);
         getServer().getPluginManager().registerEvents(new Menu(), this);
+        getServer().getPluginManager().registerEvents(new AnvilMerge(), this);
     }
 
     private boolean setupEconomy() {

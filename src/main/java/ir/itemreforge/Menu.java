@@ -35,6 +35,7 @@ public class Menu implements Listener {
         initializeItems(player);
         player.openInventory(inv.get(player));
         menuStatus.put(player, "None");
+        AnimationCancelled = false;
     }
 
     public static void initializeItems(Player player){
@@ -153,6 +154,7 @@ public class Menu implements Listener {
             int cost = plugin.getConfig().getInt("Reforge.cost");
             if(e.getRawSlot() == 22 && menuStatus.get(player).equalsIgnoreCase("inProgress")){
                 if(getEconomy().getBalance(player) >= cost){
+
                     ItemStack item = inv.get(player).getItem(13);
                     reforgedItem.put(player, reforgeItem(item, getItemType(item), player));
                     getEconomy().withdrawPlayer(player, cost);
@@ -212,6 +214,9 @@ public class Menu implements Listener {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
                 e.setCancelled(true);
             }else{
+                if(menuStatus.get(player).equals("inProgress")){
+                    return;
+                }
                 clickedItem.put(player, e.getCurrentItem());
                 e.setCancelled(true);
                 if(menuStatus.get(player) != null && menuStatus.get(player).equalsIgnoreCase("inProgress")){

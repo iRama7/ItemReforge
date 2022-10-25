@@ -5,7 +5,7 @@ Menu:
     reforge-item:
       empty: ANVIL
       inProgress: ANVIL
-      complete: ANVIL
+      complete: CHIPPED_ANVIL
 
   Background:
     complete:
@@ -13,7 +13,7 @@ Menu:
       amount: 1
       name: "&7"
       lore:
-        - ""
+        - "&7"
     inProgress:
       material: YELLOW_STAINED_GLASS_PANE
       amount: 1
