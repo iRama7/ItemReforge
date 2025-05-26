@@ -1,5 +1,8 @@
+Config:
+  AEHook: true #Should we hook into advanced enchantments?
 Reforge:
   cost: 1500
+  allow_repeat_enchantments: true
   enchantments:
     sword:
       min_new_enchantments: 3
@@ -35,6 +38,9 @@ Reforge:
         10:
           ench: unbreaking:1
           chance: 20
+        11:
+          ench: abiding:1
+          chance: 100
     armor:
       min_new_enchantments: 3
       max_new_enchantments: 4

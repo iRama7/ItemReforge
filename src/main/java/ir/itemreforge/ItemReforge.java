@@ -24,6 +24,7 @@ public final class ItemReforge extends JavaPlugin {
     private static File menuFile;
     private static FileConfiguration menuConfig;
     private static Economy econ = null;
+    private boolean AEHook = false;
 
     @Override
     public void onEnable() {
@@ -47,12 +48,15 @@ public final class ItemReforge extends JavaPlugin {
             sendPluginMessage("Disabling due to Vault dependency not found or you don't have any Economy provider!", null, true, false, false);
             getServer().getPluginManager().disablePlugin(this);
         }
+        tryAEhook();
     }
 
     @Override
     public void onDisable() {
 
     }
+
+
 
     public static void sendPluginMessage(String message, Player player, Boolean asConsole, Boolean isError, Boolean debug){
         String prefix = ChatColor.translateAlternateColorCodes('&', "&6[&aItemReforge&6] ");
@@ -63,7 +67,7 @@ public final class ItemReforge extends JavaPlugin {
             prefix = ChatColor.translateAlternateColorCodes('&', "&6[&aItemReforge&6] &6[Debug] ");
         }
         if(!asConsole){
-            player.sendMessage(prefix+ChatColor.translateAlternateColorCodes('&',message));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',message));
         }else{
             Bukkit.getConsoleSender().sendMessage(prefix+ChatColor.translateAlternateColorCodes('&',message));
         }
@@ -131,6 +135,17 @@ public final class ItemReforge extends JavaPlugin {
         }
         econ = rsp.getProvider();
         return true;
+    }
+
+    private void tryAEhook(){
+        if(getServer().getPluginManager().getPlugin("AdvancedEnchantments") == null){
+            AEHook = true;
+            sendPluginMessage("&aEnabling &fAdvancedEnchantments &ahook.", null, true, false, false);
+        }
+    }
+
+    public boolean isAEHook(){
+        return AEHook;
     }
 
     public static Economy getEconomy() {

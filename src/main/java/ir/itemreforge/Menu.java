@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import static ir.itemreforge.ItemReforge.*;
-import static ir.itemreforge.ReforgeItem.reforgeItem;
 
 public class Menu implements Listener {
 
@@ -34,8 +33,13 @@ public class Menu implements Listener {
         inv.put(player, Bukkit.createInventory(player,45,ChatColor.translateAlternateColorCodes('&', title)));
         initializeItems(player);
         player.openInventory(inv.get(player));
+        if(menuStatus.get(player) != null && !menuStatus.get(player).equalsIgnoreCase("InProgress_toComplete")){
+            AnimationCancelled = false;
+        }
+        if(menuStatus.get(player) == null){
+            AnimationCancelled = true;
+        }
         menuStatus.put(player, "None");
-        AnimationCancelled = false;
     }
 
     public static void initializeItems(Player player){
@@ -152,11 +156,14 @@ public class Menu implements Listener {
         }
         if(e.getClickedInventory().equals(e.getView().getTopInventory()) && e.getClickedInventory().equals(inv.get(player))){
             int cost = plugin.getConfig().getInt("Reforge.cost");
+
+            //Clicking anvil while in progress
             if(e.getRawSlot() == 22 && menuStatus.get(player).equalsIgnoreCase("inProgress")){
                 if(getEconomy().getBalance(player) >= cost){
 
                     ItemStack item = inv.get(player).getItem(13);
-                    reforgedItem.put(player, reforgeItem(item, getItemType(item), player));
+                    ReforgeItem ri = new ReforgeItem();
+                    reforgedItem.put(player, ri.reforgeItem(item, getItemType(item), player));
                     getEconomy().withdrawPlayer(player, cost);
                     ItemStack air = new ItemStack(Material.AIR);
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 1F, (float) 0.6);
@@ -179,12 +186,21 @@ public class Menu implements Listener {
                 e.setCancelled(true);
                 return;
             }
+            //clicking close button
             if(e.getRawSlot() == 40){
                 player.closeInventory();
             }
         }
         if(e.getClickedInventory().equals(e.getView().getTopInventory()) && e.getClickedInventory().equals(inv.get(player))){
             if(e.getRawSlot() == 13 && menuStatus.get(player).equalsIgnoreCase("Complete")){
+                    if(e.getHotbarButton() != -1){
+                        e.setCancelled(true);
+                        return;
+                    }
+                    if(e.getClick().isKeyboardClick()){
+                        e.setCancelled(true);
+                        return;
+                    }
                     player.closeInventory();
                     String message = getLanguage().getString("messages.reforged");
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
@@ -213,17 +229,18 @@ public class Menu implements Listener {
                 String message = getLanguage().getString("messages.already_reforged");
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
                 e.setCancelled(true);
-            }else{
-                if(menuStatus.get(player).equals("inProgress")){
-                    return;
-                }
+                return;
+            }
+            if(menuStatus.get(player).equals("InProgress_toComplete") || menuStatus.get(player).equals("Complete")){
+                e.setCancelled(true);
+                return;
+            }
                 clickedItem.put(player, e.getCurrentItem());
                 e.setCancelled(true);
                 if(menuStatus.get(player) != null && menuStatus.get(player).equalsIgnoreCase("inProgress")){
                     inv.get(player).setItem(13, clickedItem.get(player));
                 }
                 setAndRemove(clickedItem.get(player), player);
-            }
         }
     }
 
